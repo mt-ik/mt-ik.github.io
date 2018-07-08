@@ -246,6 +246,19 @@ body {
 
 .mt-footer .footer-left {
     width: 12%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mt-footer .footer-left .logo {
+    width: 90%;
+    height: 90px;
+    background-image: url('http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/aae8a23dfa307d225ad96c608594b342.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .mt-footer .footer-center {
