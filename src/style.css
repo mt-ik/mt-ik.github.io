@@ -15,8 +15,8 @@ ul {
 body {
     background-color: #ffffff;
     overflow: hidden;
-    color: black;
-    /* background: url("https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/51182f91cfa0fd0b3c8754d7ca23e877.png") 0% 0% / 100% 100%; */
+    color: #ffffff;
+    background: url("https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/51182f91cfa0fd0b3c8754d7ca23e877.png") 0% 0% / 100% 100%;
 }
 
 .mt-ik {
@@ -75,15 +75,14 @@ body {
 }
 
 .mt-main {
-    border: 1px solid black;
     height: 70%;
     display: flex;
 }
 
 .mt-left {
     width: 12%;
-    padding: 12px 8px;
-    background: rgba(19, 24, 65, 1);
+    /* padding: 12px 8px; */
+    /* background: rgba(19, 24, 65, 1); */
     font-size: 16px;
 }
 
@@ -96,7 +95,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
     font-weight: lighter;
     font-family: "Microsoft Yahei", Arial, sans-serif;
     font-size: 18px;
@@ -137,12 +136,57 @@ body {
     height: 24px;
 }
 
+.mt-left .item span {
+    color:#1397ff;
+    font-size:10px;
+    padding-right:14px;
+    width:auto;
+    flex:none;
+}
+
+.mt-left .item .content {
+    position: relative;
+    display: flex;
+    vertical-align: bottom;
+    /* color:#ffffff; */
+    font-size:12px;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: auto;
+}
+
+.content>div {
+    animation: 15s wordsLoop linear infinite normal;
+}
+
+@keyframes wordsLoop {
+    0% {
+        transform: translateX(200px);
+        -webkit-transform: translateX(200px);
+    }
+    100% {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes wordsLoop {
+    0% {
+        transform: translateX(200px);
+        -webkit-transform: translateX(200px);
+    }
+    100% {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+    }
+}
+
 .mt-center {
-    width: 44%;
+    width: 38%;
 }
 
 .mt-right {
-    width: 44%;
+    width: 50%;
 }
 
 .mt-right .layout {
@@ -150,25 +194,99 @@ body {
     height: 50%;
 }
 
-.mt-right .layout div {
+.mt-right .layout>div {
     flex: 1;
+    border-radius: 0px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/fb26689989fe9e9f074d4ac87fa2973d.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 8px 3px 2px 3px;
 }
 
+.mt-right .chart-footer {
+    display: flex; 
+    height: 50px;
+}
+
+.chart-footer .item {
+    flex: 1;
+    margin: 0 5px;
+    height: 100%;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/fb26689989fe9e9f074d4ac87fa2973d.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.chart-footer .item .item-title {
+    font-size: 10px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chart-footer .item .item-text {
+    font-size: 16px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .mt-footer {
-    border: 1px solid black;
     height: 15%;
     display: flex;
 }
 
 .mt-footer .footer-left {
-    width: 10%;
+    width: 12%;
 }
 
 .mt-footer .footer-center {
-    width: 45%;
+    width: 38%;
+    height: 90%;
 }
 
 .mt-footer .footer-right {
-    width: 45%;
+    width: 50%;
+    font-size: 12px;
+    display: flex;
+    height: 90%;
+}
+
+.mt-footer .footer-right .item-block {
+    flex: 1;
+    height: 100%;
+    border-radius: 0px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/fb26689989fe9e9f074d4ac87fa2973d.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-block .item-item-block {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.item-item-block div {
+    width: 50%;
+}
+
+.item-item-block div:last-child {
+    text-align: right;
 }
 
