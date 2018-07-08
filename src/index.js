@@ -18,12 +18,11 @@
         // mock.js中的ulInfo对象
         function initContext() {
             for(let i = 0; i < ulInfo.length; i++) {
-                debugger
                 let li = '<li class="item"><span>'+ulInfo[i].title+'</span><div class="content"><div>'+ulInfo[i].text+'<i style="display:inline-block;width:5em;"></i>'+ulInfo[i].text+'</div></div></li>';
                 $('#contentUl').append(li);
             }
         }
-
+        // mock.js中的footRight对象
         function intFooterRight() {
             for(let key in footRight) {
                 let itemBlock = $('<div class="item-block"></div')
@@ -36,6 +35,7 @@
             }
         }
 
+        // 设置各区域块高、宽
         function initDomWH() {
             $('#main').width($('#map').width());
             $('#main').height($('#map').height());
@@ -55,24 +55,18 @@
             $('#chartSevenSon').height($('#chartSeven').height());
         }
 
+        // 设置图表底部数据
         function initChartFoot(data, dom) {
             data.forEach( o => {
                 let itemFoot = $('<div class="item"><div class="item-title">'+ o.name +'</div><div class="item-text" >'+ o.value +'</div></div>');
                 dom.append(itemFoot);
             });
         }
-
-        function setEcharts() {
-            let myChart = E.init(document.querySelector("#main"));
+        // 图1-饼图
+        function setEchartOne() {
             let myChartOne = E.init(document.querySelector('#chartOneSon'));
             let myChartOneFoot = $('#chartOneSon').next();
-            let myChartTwo = E.init(document.querySelector('#chartTwoSon'));
-            let myChartThree = E.init(document.querySelector('#chartThreeSon'));
-            let myChartFour = E.init(document.querySelector('#chartFourSon'));
-            let myChartFive = E.init(document.querySelector('#chartFiveSon'));
-            let myChartSix = E.init(document.querySelector('#chartSixSon'));
-            let myChartSeven = E.init(document.querySelector('#chartSevenSon'));
-
+            initChartFoot(chartOne.footer, myChartOneFoot);
 
             myChartOne.setOption(option = {
                 title: {
@@ -120,18 +114,20 @@
                     }
                 ]
             });
-            initChartFoot(chartOne.footer, myChartOneFoot);
-
-
-
+        }
+        // 图2-柱状图
+        function setEchartTwo() {
+            let myChartTwo = E.init(document.querySelector('#chartTwoSon'));
+            let myChartTwoFoot = $('#chartTwoSon').next();
+            initChartFoot(chartTwo.footer, myChartTwoFoot);
             myChartTwo.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartTwo.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     },
-                    subtext: 'aaabbbccc',
+                    subtext: chartTwo.title.subtext,
                     subtextStyle: {
                         color: '#ffffff'
                     }
@@ -149,7 +145,7 @@
                             color: '#ffffff',
                         }
                     },
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    data: chartTwo.series.xAxis,
                 },
                 yAxis: {
                     type: 'value',
@@ -160,19 +156,24 @@
                     },
                 },
                 series: [{
-                    data: [120, 200, 150, 80, 70, 110, 130],
+                    data: chartTwo.series.data,
                     type: 'bar'
                 }]
             });
-
+        }
+        // 图3-柱状图
+        function setEchartThree() {
+            let myChartThree = E.init(document.querySelector('#chartThreeSon'));
+            let myChartThreeFoot = $('#chartThreeSon').next();
+            initChartFoot(chartThree.footer, myChartThreeFoot);
             myChartThree.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartThree.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     },
-                    subtext: 'aaabbbccc',
+                    subtext: chartThree.title.subtext,
                     subtextStyle: {
                         color: '#ffffff'
                     }
@@ -190,7 +191,7 @@
                             color: '#ffffff',
                         }
                     },
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    data: chartThree.series.xAxis,
                 },
                 yAxis: {
                     type: 'value',
@@ -201,19 +202,22 @@
                     },
                 },
                 series: [{
-                    data: [120, 200, 150, 80, 70, 110, 130],
+                    data: chartThree.series.data,
                     type: 'bar'
                 }]
             });
-
+        }
+        // 图4-柱状图
+        function setEchartFour() {
+            let myChartFour = E.init(document.querySelector('#chartFourSon'));
             myChartFour.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartFour.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     },
-                    subtext: 'aaabbbccc',
+                    subtext: chartFour.title.subtext,
                     subtextStyle: {
                         color: '#ffffff'
                     }
@@ -224,9 +228,6 @@
                         type: 'shadow'
                     }
                 },
-                // legend: {
-                //     data: ['2011年']
-                // },
                 grid: {
                     left: '3%',
                     right: '4%',
@@ -249,25 +250,30 @@
                             color: '#ffffff',
                         }
                     },
-                    data: ['巴西','印尼','美国','印度','中国']
+                    data: chartFour.series.yAxis
                 },
                 series: [
                     {
-                        name: '2011年',
+                        name: chartFour.series.title,
                         type: 'bar',
-                        data: [18203, 23489, 29034, 104970, 131744]
+                        data: chartFour.series.data
                     }
                 ]
             });
-
+        }
+        // 图5-饼图
+        function setEchartFive() {
+            let myChartFive = E.init(document.querySelector('#chartFiveSon'));
+            let myChartFiveFoot = $('#chartFiveSon').next();
+            initChartFoot(chartFive.footer, myChartFiveFoot);
             myChartFive.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartFive.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     },
-                    subtext: 'aaabbbccc',
+                    subtext: chartFive.title.subtext,
                     subtextStyle: {
                         color: '#ffffff'
                     }
@@ -276,14 +282,9 @@
                     trigger: 'item',
                     formatter: "{a} <br/>{b}: {c} ({d}%)"
                 },
-                // legend: {
-                //     orient: 'vertical',
-                //     x: 'left',
-                //     data:['商品1','商品2','商品3','商品4','商品5']
-                // },
                 series: [
                     {
-                        name:'商品',
+                        name: chartFive.series.title,
                         type:'pie',
                         radius: ['30%', '50%'],
                         avoidLabelOverlap: false,
@@ -296,6 +297,7 @@
                                 show: true,
                                 textStyle: {
                                     fontSize: '15',
+                                    color: '#ffffff',
                                     fontWeight: 'bold'
                                 }
                             }
@@ -305,24 +307,24 @@
                                 show: false
                             }
                         },
-                        data:[
-                            {value:335, name:'商品1'},
-                            {value:310, name:'商品2'},
-                            {value:234, name:'商品3'},
-                            {value:135, name:'商品4'},
-                            {value:1548, name:'商品5'}
-                        ]
+                        data: chartFive.series.data
                     }
                 ]
             });
+        }
+        // 图6-饼图
+        function setEchartSix() {
+            let myChartSix = E.init(document.querySelector('#chartSixSon'));
+            let myChartSixFoot = $('#chartSixSon').next();
+            initChartFoot(chartSix.footer, myChartSixFoot);
             myChartSix.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartSix.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     },
-                    subtext: 'aaabbbccc',
+                    subtext: chartSix.title.subtext,
                     subtextStyle: {
                         color: '#ffffff'
                     }
@@ -331,14 +333,9 @@
                     trigger: 'item',
                     formatter: "{a} <br/>{b}: {c} ({d}%)"
                 },
-                // legend: {
-                //     orient: 'vertical',
-                //     x: 'left',
-                //     data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                // },
                 series: [
                     {
-                        name:'访问来源',
+                        name: chartSix.series.title,
                         type:'pie',
                         radius: ['30%', '50%'],
                         avoidLabelOverlap: false,
@@ -351,6 +348,7 @@
                                 show: true,
                                 textStyle: {
                                     fontSize: '15',
+                                    color: '#ffffff',
                                     fontWeight: 'bold'
                                 }
                             }
@@ -360,31 +358,22 @@
                                 show: false
                             }
                         },
-                        data:[
-                            {value:335, name:'商品1'},
-                            {value:310, name:'商品2'},
-                            {value:234, name:'商品3'},
-                            {value:135, name:'商品4'},
-                            {value:1548, name:'商品5'}
-                        ]
+                        data: chartSix.series.data
                     }
                 ]
             });
-
+        }
+        // 图7-折线图
+        function setEchartSeven() {
+            let myChartSeven = E.init(document.querySelector('#chartSevenSon'));
             myChartSeven.setOption(option = {
                 title: {
-                    text: '一季度销售进度',
+                    text: chartSeven.title.text,
                     textStyle: {
                         fontSize: 13,
                         color: '#ffffff',
                     }
                 },
-                // tooltip: {
-                //     trigger: 'axis'
-                // },
-                // legend: {
-                //     data:['邮件营销']
-                // },
                 grid: {
                     top: 30,
                     left: '3%',
@@ -392,11 +381,6 @@
                     bottom: '3%',
                     containLabel: true
                 },
-                // toolbox: {
-                //     feature: {
-                //         saveAsImage: {}
-                //     }
-                // },
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
@@ -405,7 +389,7 @@
                             color: '#ffffff',
                         }
                     },
-                    data: ['周一','周二','周三','周四','周五','周六','周日']
+                    data: chartSeven.series.xAxis
                 },
                 yAxis: {
                     type: 'value',
@@ -426,15 +410,18 @@
                 },
                 series: [
                     {
-                        name:'邮件营销',
+                        name: chartSeven.series.title,
                         type:'line',
-                        stack: '总量',
+                        stack: chartSeven.series.stack,
                         areaStyle: {},
-                        data:[120, 132, 101, 134, 90, 230, 210]
+                        data: chartSeven.series.data
                     }
                 ]
             });
-
+        }
+        // 地图
+        function setEchartMap() {
+            let myChart = E.init(document.querySelector('#main'));
             $.getJSON('./data.json', function(weiboData) {
                 weiboData = weiboData.map(function(serieData, idx) {
                     var px = serieData[0] / 1000;
@@ -529,6 +516,17 @@
                 });
             });
         }
+
+        function setEcharts() {
+            setEchartOne();
+            setEchartTwo();
+            setEchartThree();
+            setEchartFour();
+            setEchartFive();
+            setEchartSix();
+            setEchartSeven();
+            setEchartMap();
+        }
         
         function init() {
             initTitle();
@@ -538,13 +536,5 @@
             setEcharts();
         }
         init();
-        // $(window).resize(function() {
-        //     console.log('我执行了。。。')
-        //     init();
-        // });
-        // setInterval(() => {
-        //     init();
-        //     console.log('1111')
-        // }, 3000);
     })
 })(jQuery || window.jQuery, echarts || window.echarts);
